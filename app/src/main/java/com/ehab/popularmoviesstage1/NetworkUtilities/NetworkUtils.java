@@ -23,14 +23,11 @@ import okhttp3.Response;
 public final class NetworkUtils {
     private static final String TAG = NetworkUtils.class.getSimpleName();
 
-    private static final String BASE_URL = "Write base api url here";
+    private static final String BASE_URL = "http://api.themoviedb.org/3/movie/popular";
 
     public static final String API_KEY = "f1c9b64bd3fdeef62ed1248d3242eb8c";
 
-    /* The format we want our API to return */
-    private static final String format = "json";
-
-    final static String FORMAT_PARAM = "mode";
+    final static String API_KEY_PARAM = "api_key";
 
 
     /**
@@ -40,9 +37,11 @@ public final class NetworkUtils {
      * @param locationQuery The location that will be queried for.
      * @return The URL to use to query the weather server.
      */
+
+    // the url will be (http://api.themoviedb.org/3/movie/popular?api_key=f1c9b64bd3fdeef62ed1248d3242eb8c)
     public static URL buildUrl(String locationQuery) {
         Uri builtUri = Uri.parse(BASE_URL).buildUpon()
-                .appendQueryParameter(FORMAT_PARAM, format).build();
+                .appendQueryParameter(API_KEY_PARAM, API_KEY).build();
 
         URL url = null;
         try {
