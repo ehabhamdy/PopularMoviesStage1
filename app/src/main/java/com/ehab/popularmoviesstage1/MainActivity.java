@@ -15,6 +15,7 @@ import com.ehab.popularmoviesstage1.model.MovieDetail;
 public class MainActivity extends AppCompatActivity implements PopularMoviesAdapter.ListItemClickListener{
 
 
+    public static final String EXTRA_MOVIE_DETAILS = "MOVIE_DETIALS";
     private SectionsPagerAdapter mSectionsPagerAdapter;
 
     private ViewPager mViewPager;
@@ -43,7 +44,7 @@ public class MainActivity extends AppCompatActivity implements PopularMoviesAdap
     @Override
     public void onListItemClick(MovieDetail movie) {
         Intent intent = new Intent(this, DetailsActivity.class);
-        intent.putExtra(Intent.EXTRA_PACKAGE_NAME, movie);
+        intent.putExtra(EXTRA_MOVIE_DETAILS, movie.getId());
         startActivity(intent);
     }
 

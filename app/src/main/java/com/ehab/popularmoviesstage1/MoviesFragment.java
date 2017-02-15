@@ -28,7 +28,7 @@ public class MoviesFragment extends Fragment implements LoaderManager.LoaderCall
 
     public int MOVIES_LOADER_ID = 22;
 
-    private static final String ARG_DATA = "my data";
+    private static final String ARG_DATA = "data";
 
     RecyclerView mMoviesRecyclerview;
     private TextView mErrorMessageDisplay;
@@ -47,7 +47,8 @@ public class MoviesFragment extends Fragment implements LoaderManager.LoaderCall
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //Retreiving passed data from the fragment arguments
+        // Here I am initializing the loader id based on the purpose of fragment
+        // to be able to load different data from the server, thus creating multiple asyncTaskLoaders
         MOVIES_LOADER_ID = getArguments().getInt(ARG_DATA);
     }
 

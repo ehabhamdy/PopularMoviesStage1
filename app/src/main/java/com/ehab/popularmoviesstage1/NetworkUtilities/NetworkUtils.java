@@ -30,8 +30,7 @@ import okhttp3.Response;
 public final class NetworkUtils {
     private static final String TAG = NetworkUtils.class.getSimpleName();
 
-    private static final String BASE_URL = "http://api.themoviedb.org/3/movie/popular";
-    private static final String BASE_URL_TOP = "http://api.themoviedb.org/3/movie/top_rated";
+    private static final String BASE_URL = "http://api.themoviedb.org/3/movie/";
 
     public static final String API_KEY = "f1c9b64bd3fdeef62ed1248d3242eb8c";
 
@@ -45,9 +44,15 @@ public final class NetworkUtils {
         Uri builtUri = null;
         if(loader_id == 1) {
             builtUri = Uri.parse(BASE_URL).buildUpon()
+                    .appendPath("popular")
+                    .appendQueryParameter(API_KEY_PARAM, API_KEY).build();
+        }else if(loader_id == 2){
+            builtUri = Uri.parse(BASE_URL).buildUpon()
+                    .appendPath("top_rated")
                     .appendQueryParameter(API_KEY_PARAM, API_KEY).build();
         }else{
-            builtUri = Uri.parse(BASE_URL_TOP).buildUpon()
+            builtUri = Uri.parse(BASE_URL).buildUpon()
+                    .appendPath(String.valueOf(loader_id))
                     .appendQueryParameter(API_KEY_PARAM, API_KEY).build();
         }
 
@@ -100,6 +105,15 @@ public final class NetworkUtils {
         return response.body().string();
     }
 
+    public static String getResponseFromHttpUrl_details(URL url)throws IOException {
+        OkHttpClient client = new OkHttpClient();
+
+        Request request = new Request.Builder().url(url).build();
+
+        Response response = client.newCall(request).execute();
+        return response.body().string();
+    }
+
     private static boolean isOnline(Context mContext)
     {
         try
@@ -120,14 +134,31 @@ public final class NetworkUtils {
         for (int i = 0; i < moviesArray.length(); i++) {
             JSONObject movie = moviesArray.getJSONObject(i);
             String posterPath = movie.getString("poster_path");
+            String movieTitle = movie.getString("title");
             int id = movie.getInt("id");
             MovieDetail detail = new MovieDetail();
             detail.setPosterPath(posterPath);
             detail.setId(id);
+            detail.setTitle(movieTitle);
             parsedMovieData[i] = detail;
             Log.d("Ehaaaab", detail.getPosterPath());
 
         }
         return parsedMovieData;
+    }
+
+    public static MovieDetail getSingleMovieDetailsFromJson(String jsonMoviesResponse) throws JSONException {
+        JSONObject movieJson = new JSONObject(jsonMoviesResponse);
+        MovieDetail movieDetails = new MovieDetail();
+
+        movieDetails.setTitle(movieJson.getString("title"));
+        movieDetails.setPosterPath(movieJson.getString("poster_path"));
+        movieDetails.setBackdropPath(movieJson.getString("backdrop_path"));
+        movieDetails.setOverview(movieJson.getString("overview"));
+        movieDetails.setVoteAverage(movieJson.getDouble("vote_average"));
+        movieDetails.setReleaseDate(movieJson.getString("release_date"));
+
+
+        return movieDetails;
     }
 }
