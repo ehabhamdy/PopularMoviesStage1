@@ -1,12 +1,15 @@
 package com.ehab.popularmoviesstage1;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import java.util.List;
 
 /**
  * Created by ehabhamdy on 2/13/17.
  */
 
-public class MovieDetail {
+public class MovieDetail implements Parcelable {
 
     private String posterPath;
     private Boolean adult;
@@ -22,6 +25,31 @@ public class MovieDetail {
     private Integer voteCount;
     private Boolean video;
     private Double voteAverage;
+
+    public  MovieDetail(){
+    }
+
+    protected MovieDetail(Parcel in) {
+        posterPath = in.readString();
+        overview = in.readString();
+        releaseDate = in.readString();
+        originalTitle = in.readString();
+        originalLanguage = in.readString();
+        title = in.readString();
+        backdropPath = in.readString();
+    }
+
+    public static final Creator<MovieDetail> CREATOR = new Creator<MovieDetail>() {
+        @Override
+        public MovieDetail createFromParcel(Parcel in) {
+            return new MovieDetail(in);
+        }
+
+        @Override
+        public MovieDetail[] newArray(int size) {
+            return new MovieDetail[size];
+        }
+    };
 
     public String getPosterPath() {
         return posterPath;
@@ -133,5 +161,21 @@ public class MovieDetail {
 
     public void setVoteAverage(Double voteAverage) {
         this.voteAverage = voteAverage;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel parcel, int i) {
+        parcel.writeString(posterPath);
+        parcel.writeString(overview);
+        parcel.writeString(releaseDate);
+        parcel.writeString(originalTitle);
+        parcel.writeString(originalLanguage);
+        parcel.writeString(title);
+        parcel.writeString(backdropPath);
     }
 }

@@ -5,6 +5,13 @@ import android.net.ConnectivityManager;
 import android.net.Uri;
 import android.util.Log;
 
+import com.ehab.popularmoviesstage1.MainActivity;
+import com.ehab.popularmoviesstage1.MovieDetail;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
@@ -29,17 +36,11 @@ public final class NetworkUtils {
 
     final static String API_KEY_PARAM = "api_key";
 
+    private static final String OWN_RESULTS = "results";
 
-    /**
-     * Builds the URL used to talk to the weather server using a location. This location is based
-     * on the query capabilities of the weather provider that we are using.
-     *
-     * @param locationQuery The location that will be queried for.
-     * @return The URL to use to query the weather server.
-     */
 
     // the url will be (http://api.themoviedb.org/3/movie/popular?api_key=f1c9b64bd3fdeef62ed1248d3242eb8c)
-    public static URL buildUrl(String locationQuery) {
+    public static URL buildUrl( /*String locationQ */) {
         Uri builtUri = Uri.parse(BASE_URL).buildUpon()
                 .appendQueryParameter(API_KEY_PARAM, API_KEY).build();
 
@@ -103,5 +104,23 @@ public final class NetworkUtils {
         {
             return false;
         }
+    }
+
+    public static MovieDetail[] getMoviesDetailsFromJson(MainActivity mainActivity, String jsonMoviesResponse) throws JSONException {
+        JSONObject moviesJson = new JSONObject(jsonMoviesResponse);
+        JSONArray moviesArray = moviesJson.getJSONArray(OWN_RESULTS);
+        MovieDetail[] parsedMovieData = new MovieDetail[moviesArray.length()];
+        for (int i = 0; i < moviesArray.length(); i++) {
+            JSONObject movie = moviesArray.getJSONObject(i);
+            String posterPath = movie.getString("poster_path");
+            int id = movie.getInt("id");
+            MovieDetail detail = new MovieDetail();
+            detail.setPosterPath(posterPath);
+            detail.setId(id);
+            parsedMovieData[i] = detail;
+            Log.d("Ehaaaab", detail.getPosterPath());
+
+        }
+        return parsedMovieData;
     }
 }

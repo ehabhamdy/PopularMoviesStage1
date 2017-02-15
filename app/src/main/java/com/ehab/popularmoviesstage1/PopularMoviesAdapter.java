@@ -53,7 +53,10 @@ public class PopularMoviesAdapter extends RecyclerView.Adapter<PopularMoviesAdap
 
     @Override
     public int getItemCount() {
-        return mMovies.length;
+        if(mMovies == null)
+            return 0;
+        else
+            return mMovies.length;
     }
 
 
@@ -76,7 +79,7 @@ public class PopularMoviesAdapter extends RecyclerView.Adapter<PopularMoviesAdap
         }
 
         public void bind(MovieDetail movie) {
-            Picasso.with(mContext).load("http://i.imgur.com/DvpvklR.png").into(movieImageView);
+            Picasso.with(mContext).load("http://image.tmdb.org/t/p/w185/"+movie.getPosterPath()).into(movieImageView);
         }
     }
 
