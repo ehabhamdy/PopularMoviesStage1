@@ -61,7 +61,7 @@ public class MainActivity extends AppCompatActivity implements PopularMoviesAdap
 
             switch (position) {
                 case 0:
-                    return MoviesFragment.newInstance(2);
+                    return MoviesFragment.newInstance(1);
                 case 1:
                     return MoviesFragment.newInstance(2);
             }

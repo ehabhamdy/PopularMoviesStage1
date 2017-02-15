@@ -26,7 +26,7 @@ import java.net.URL;
 
 public class MoviesFragment extends Fragment implements LoaderManager.LoaderCallbacks<MovieDetail[]>{
 
-    public static final int MOVIES_LOADER_ID = 22;
+    public int MOVIES_LOADER_ID = 22;
 
     private static final String ARG_DATA = "my data";
 
@@ -48,7 +48,7 @@ public class MoviesFragment extends Fragment implements LoaderManager.LoaderCall
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         //Retreiving passed data from the fragment arguments
-        //String Id = getArguments().getString(ARG_DATA);
+        MOVIES_LOADER_ID = getArguments().getInt(ARG_DATA);
     }
 
     @Nullable
