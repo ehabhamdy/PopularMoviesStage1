@@ -27,7 +27,7 @@ public class MoviesFragment extends Fragment implements LoaderManager.LoaderCall
 
     public static final int MOVIES_LOADER_ID = 22;
 
-    private static final String ARG_CRIME_ID = "crime_id";
+    private static final String ARG_DATA = "my data";
 
     RecyclerView mMoviesRecyclerview;
     private TextView mErrorMessageDisplay;
@@ -37,7 +37,7 @@ public class MoviesFragment extends Fragment implements LoaderManager.LoaderCall
     public static MoviesFragment newInstance(){
         Bundle args = new Bundle();
         //args.putSerializable(ARG_CRIME_ID, crimeId);
-        args.putString(ARG_CRIME_ID, "sdfds");
+        args.putString(ARG_DATA, "data");
         MoviesFragment fragment = new MoviesFragment();
         fragment.setArguments(args);
         return fragment;
@@ -47,7 +47,7 @@ public class MoviesFragment extends Fragment implements LoaderManager.LoaderCall
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         //Retreiving passed data from the fragment arguments
-        //UUID crimeId = (UUID) getArguments().getSerializable(ARG_CRIME_ID);
+        //String Id = getArguments().getString(ARG_DATA);
     }
 
     @Nullable
