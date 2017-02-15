@@ -35,7 +35,8 @@ public class DetailsActivity extends AppCompatActivity {
     TextView dateTextView;
     @BindView(R.id.rating_textview)
     TextView ratingTextView;
-
+    @BindView(R.id.overview_textview)
+    TextView overviewTextView;
 
 
 
@@ -70,7 +71,7 @@ public class DetailsActivity extends AppCompatActivity {
                     title.setText(movieDetail.getTitle());
                     dateTextView.setText(movieDetail.getReleaseDate());
                     ratingTextView.setText(movieDetail.getVoteAverage().toString() + " / 10");
-
+                    overviewTextView.setText(movieDetail.getOverview());
 
                 }
                 else{
