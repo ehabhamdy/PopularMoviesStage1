@@ -16,6 +16,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.ehab.popularmoviesstage1.NetworkUtilities.NetworkUtils;
+import com.ehab.popularmoviesstage1.model.MovieDetail;
 
 import java.net.URL;
 
@@ -34,10 +35,10 @@ public class MoviesFragment extends Fragment implements LoaderManager.LoaderCall
     private ProgressBar mLoadingIndicator;
     PopularMoviesAdapter mAdapter;
 
-    public static MoviesFragment newInstance(){
+    public static MoviesFragment newInstance(int type){
         Bundle args = new Bundle();
         //args.putSerializable(ARG_CRIME_ID, crimeId);
-        args.putString(ARG_DATA, "data");
+        args.putInt(ARG_DATA, type);
         MoviesFragment fragment = new MoviesFragment();
         fragment.setArguments(args);
         return fragment;

@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
+import com.ehab.popularmoviesstage1.model.MovieDetail;
 import com.squareup.picasso.Picasso;
 
 

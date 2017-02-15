@@ -6,7 +6,7 @@ import android.net.Uri;
 import android.util.Log;
 
 import com.ehab.popularmoviesstage1.MainActivity;
-import com.ehab.popularmoviesstage1.MovieDetail;
+import com.ehab.popularmoviesstage1.model.MovieDetail;
 
 import org.json.JSONArray;
 import org.json.JSONException;

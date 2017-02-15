@@ -2,14 +2,22 @@ package com.ehab.popularmoviesstage1;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
+
+import com.ehab.popularmoviesstage1.model.MovieDetail;
 
 public class MainActivity extends AppCompatActivity implements PopularMoviesAdapter.ListItemClickListener{
 
-    public static final int MOVIES_LOADER_ID = 22;
 
+    private SectionsPagerAdapter mSectionsPagerAdapter;
+
+    private ViewPager mViewPager;
 
 
     @Override
@@ -17,15 +25,18 @@ public class MainActivity extends AppCompatActivity implements PopularMoviesAdap
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        FragmentManager fm = getSupportFragmentManager();
-        Fragment fragment = fm.findFragmentById(R.id.fragment_container);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
 
-        if (fragment == null) {
-            fragment = MoviesFragment.newInstance();
-            fm.beginTransaction()
-                    .add(R.id.fragment_container, fragment)
-                    .commit();
-        }
+        mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
+
+
+        mViewPager = (ViewPager) findViewById(R.id.container);
+        mViewPager.setAdapter(mSectionsPagerAdapter);
+
+        TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
+        tabLayout.setupWithViewPager(mViewPager);
+
     }
 
 
@@ -37,4 +48,43 @@ public class MainActivity extends AppCompatActivity implements PopularMoviesAdap
     }
 
 
+    public class SectionsPagerAdapter extends FragmentPagerAdapter {
+
+        public SectionsPagerAdapter(FragmentManager fm) {
+            super(fm);
+        }
+
+        @Override
+        public Fragment getItem(int position) {
+            // getItem is called to instantiate the fragment for the given page.
+            // Return a PlaceholderFragment (defined as a static inner class below).
+
+            switch (position) {
+                case 0:
+                    return MoviesFragment.newInstance(2);
+                case 1:
+                    return MoviesFragment.newInstance(2);
+            }
+            return null;
+
+        }
+
+        @Override
+        public int getCount() {
+            // Show 3 total pages.
+            return 2;
+        }
+
+        @Override
+        public CharSequence getPageTitle(int position) {
+            switch (position) {
+                case 0:
+                    return "Popular Movies";
+                case 1:
+                    return "Top Rated";
+            }
+            return null;
+        }
+
+    }
 }

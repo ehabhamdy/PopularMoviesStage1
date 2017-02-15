@@ -1,4 +1,4 @@
-package com.ehab.popularmoviesstage1;
+package com.ehab.popularmoviesstage1.model;
 
 import android.os.Parcel;
 import android.os.Parcelable;
