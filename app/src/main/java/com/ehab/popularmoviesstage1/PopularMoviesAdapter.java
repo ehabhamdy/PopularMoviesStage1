@@ -28,9 +28,9 @@ public class PopularMoviesAdapter extends RecyclerView.Adapter<PopularMoviesAdap
     private Context mContext;
 
 
-    public PopularMoviesAdapter(Context context, ListItemClickListener listener){
+    public PopularMoviesAdapter(Context context){
         mContext = context;
-        mOnClickListener = listener;
+        mOnClickListener = (ListItemClickListener) context;
     }
 
     @Override
