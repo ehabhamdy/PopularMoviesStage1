@@ -31,6 +31,7 @@ public final class NetworkUtils {
     private static final String TAG = NetworkUtils.class.getSimpleName();
 
     private static final String BASE_URL = "http://api.themoviedb.org/3/movie/popular";
+    private static final String BASE_URL_TOP = "http://api.themoviedb.org/3/movie/top_rated";
 
     public static final String API_KEY = "f1c9b64bd3fdeef62ed1248d3242eb8c";
 
@@ -40,9 +41,15 @@ public final class NetworkUtils {
 
 
     // the url will be (http://api.themoviedb.org/3/movie/popular?api_key=f1c9b64bd3fdeef62ed1248d3242eb8c)
-    public static URL buildUrl( /*String locationQ */) {
-        Uri builtUri = Uri.parse(BASE_URL).buildUpon()
-                .appendQueryParameter(API_KEY_PARAM, API_KEY).build();
+    public static URL buildUrl( /*String locationQ */int loader_id) {
+        Uri builtUri = null;
+        if(loader_id == 1) {
+            builtUri = Uri.parse(BASE_URL).buildUpon()
+                    .appendQueryParameter(API_KEY_PARAM, API_KEY).build();
+        }else{
+            builtUri = Uri.parse(BASE_URL_TOP).buildUpon()
+                    .appendQueryParameter(API_KEY_PARAM, API_KEY).build();
+        }
 
         URL url = null;
         try {

@@ -98,7 +98,7 @@ public class MoviesFragment extends Fragment implements LoaderManager.LoaderCall
 
             @Override
             public MovieDetail[] loadInBackground() {
-                URL moviesRequestURL = NetworkUtils.buildUrl();
+                URL moviesRequestURL = NetworkUtils.buildUrl(MOVIES_LOADER_ID);
                 Log.d("Activityyyyy", moviesRequestURL.toString());
 
                 try {
