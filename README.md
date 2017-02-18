@@ -1,8 +1,8 @@
 # Popular Movies (Stage1)
 ## Project 1 (Andriod Development, Udacity Nanodegree program)
-![Main Screen](/screenshot1.jpg?raw=true "Main Screen")
-![Main Screen](/screenshot2.jpg?raw=true "Scrolling")
-![Details Screen](/screenshot3.jpg?raw=true "Movie Detail")
+![Main Screen](/screenshot1.jpg "Main Screen")
+![Main Screen](/screenshot2.jpg "Scrolling")
+![Details Screen](/screenshot3.jpg "Movie Detail")
 
 ## Description
 In this project we build an application to view movies from the MovieDB website throught their API.
