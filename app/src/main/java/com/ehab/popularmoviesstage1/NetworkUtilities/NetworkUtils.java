@@ -32,14 +32,15 @@ public final class NetworkUtils {
 
     private static final String BASE_URL = "http://api.themoviedb.org/3/movie/";
 
-    public static final String API_KEY = "f1c9b64bd3fdeef62ed1248d3242eb8c";
+    // TODO: Use a valid API_KEY, Sign up to the moviedb api and enjoy
+    public static final String API_KEY = "ed1248d3b64bfc9d3fde1ef62242eb8c";
 
     final static String API_KEY_PARAM = "api_key";
 
     private static final String OWN_RESULTS = "results";
 
 
-    // the url will be (http://api.themoviedb.org/3/movie/popular?api_key=f1c9b64bd3fdeef62ed1248d3242eb8c)
+    // the url will be (http://api.themoviedb.org/3/movie/popular?api_key=ed1248d3b64bfc9d3fde1ef62242eb8c)
     public static URL buildUrl( /*String locationQ */int loader_id) {
         Uri builtUri = null;
         if(loader_id == 1) {
