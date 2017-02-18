@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">PopularMovies Stage1</string>
+    <string name="app_name">Popular Movies</string>
     <string name="error_message">Something went wrong !!</string>
     <string name="title_experimental_text">Finding Dory</string>
     <string name="date_expermintal_text">16 June, 2016</string>
