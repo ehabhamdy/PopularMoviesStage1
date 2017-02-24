@@ -17,6 +17,10 @@ import android.widget.TextView;
 
 import com.ehab.popularmoviesstage1.NetworkUtilities.NetworkUtils;
 import com.ehab.popularmoviesstage1.model.MovieDetail;
+import com.google.android.flexbox.AlignItems;
+import com.google.android.flexbox.FlexDirection;
+import com.google.android.flexbox.FlexWrap;
+import com.google.android.flexbox.FlexboxLayoutManager;
 
 import java.net.URL;
 
@@ -61,6 +65,12 @@ public class MoviesFragment extends Fragment implements LoaderManager.LoaderCall
         mMoviesRecyclerview = (RecyclerView) v.findViewById(R.id.movies_recyclerview);
 
         GridLayoutManager gridLayoutManager = new GridLayoutManager(getActivity(), 2);
+
+        FlexboxLayoutManager flexLayoutManager = new FlexboxLayoutManager();
+        flexLayoutManager.setFlexWrap(FlexWrap.WRAP);
+        flexLayoutManager.setFlexDirection(FlexDirection.ROW);
+        flexLayoutManager.setAlignItems(AlignItems.STRETCH);
+
         mMoviesRecyclerview.setLayoutManager(gridLayoutManager);
         mMoviesRecyclerview.setHasFixedSize(true);
 
